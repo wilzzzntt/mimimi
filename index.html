@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LeParfum - Tienda de Perfumes Premium</title>
+
+<!-- Google Fonts: Playfair Display para títulos + Open Sans para texto -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+  /* Reset básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #0b0b0b;
+    color: #eee;
+    line-height: 1.6;
+  }
+
+  /* Navbar fija y transparente */
+  nav {
+    position: fixed;
+    width: 100%;
+    top: 0; left: 0;
+    background: transparent;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  }
+  nav.scrolled {
+    background-color: #111;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  }
+  nav .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: #d4af37; /* dorado real */
+    letter-spacing: 3px;
+    cursor: default;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #eee;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  nav ul li a:hover {
+    color: #d4af37;
+  }
+
+  /* Hero Section */
+  header.hero {
+    height: 100vh;
+    background: linear-gradient(
+        rgba(11, 11, 11, 0.7), 
+        rgba(11, 11, 11, 0.7)
+      ),
+      url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  header.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    color: #d4af37;
+    margin-bottom: 20px;
+    letter-spacing: 6px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+  }
+  header.hero p {
+    font-size: 1.3rem;
+    max-width: 650px;
+    color: #f0e6c8;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+  }
+  header.hero button {
+    margin-top: 40px;
+    background-color: transparent;
+    border: 2px solid #d4af37;
+    color: #d4af37;
+    padding: 14px 40px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    letter-spacing: 2px;
+  }
+  header.hero button:hover {
+    background-color: #d4af37;
+    color: #0b0b0b;
+  }
+
+  /* Main container catálogo */
+  main {
+    padding: 70px 60px 100px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  main h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: #d4af37;
+    margin-bottom: 40px;
+    letter-spacing: 3px;
+    text-align: center;
+  }
+
+  /* Grid de productos */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+  }
+  .product-card {
+    background: #1c1c1c;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.8);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 25px rgba(212, 175, 55, 0.7);
+  }
+  .product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .product-card:hover img {
+    transform: scale(1.1);
+  }
+  .product-info {
+    padding: 20px;
+    text-align: center;
+  }
+  .product-info h3 {
+    font-family: 'Playfair Display', serif;
+    color: #d4af37;
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+  .product-info p {
+    color: #ccc;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #111;
+    color: #777;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    border-top: 1px solid #222;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav {
+      padding: 15px 30px;
+    }
+    header.hero h1 {
+      font-size: 3rem;
+      letter-spacing: 3px;
+    }
+    header.hero p {
+      font-size: 1.1rem;
+    }
+    main {
+      padding: 50px 20px 70px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="logo">LeParfum</div>
+  <ul>
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Catálogo</a></li>
+    <li><a href="#">Ofertas</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <h1>LeParfum</h1>
+  <p>Perfumes exclusivos para cada momento. Elegancia y sofisticación en cada aroma.</p>
+  <button onclick="document.querySelector('main').scrollIntoView({behavior:'smooth'})">Explorar catálogo</button>
+</header>
+
+<main>
+  <h2>Productos Destacados</h2>
+  <section class="product-grid">
+    <article class="product-card">
+      <img src="chanel.png" alt="Chanel No 5" />
+      <div class="product-info">
+        <h3>Chanel No 5</h3>
+        <p>$120</p>
+      </div>
+    </article>
+    <article class="product-card">
+      <img src="dior.png" alt="Dior Sauvage" />
+      <div class="product-info">
+        <h3>Dior Sauvage</h3>
+        <p>$150</p>
+      </div>
+    </article>
+    <article class="product-card">
+      <img src="versace.png" alt="Versace Eros" />
+      <div class="product-info">
+        <h3>Versace Eros</h3>
+        <p>$130</p>
+      </div>
+    </article>
+    <article class="product-card">
+      <img src="Ab.png" alt="AB The Icon" />
+      <div class="product-info">
+        <h3>AB The Icon</h3>
+        <p>$140</p>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer>
+  © 2025 LeParfum - Todos los derechos reservados.
+</footer>
+
+<script>
+  // Cambia el fondo y sombra del nav al hacer scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if(window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+</script>
+
+</body>
+</html>
